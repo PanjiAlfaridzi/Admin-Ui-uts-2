@@ -9,4 +9,45 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.myDatatable .myDatatableTitle .link {
+  text-decoration: none;
+  color: green;
+  font-size: 16px;
+  font-weight: 400;
+  border: 1px solid green;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.myDatatable .cellWithImg {
+  display: flex;
+  align-items: center;
+}
+.myDatatable .cellWithImg .cellImg {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 20px;
+}
+.myDatatable .cellAction {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.myDatatable .cellAction .viewButton {
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: darkblue;
+  border: 1px dotted rgba(0, 0, 139, 0.596);
+  cursor: pointer;
+}
+.myDatatable .cellAction .deleteButton {
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: red;
+  border: 1px dotted rgba(220, 20, 60, 0.6);
+  cursor: pointer;
 }/*# sourceMappingURL=mydatatable.css.map */

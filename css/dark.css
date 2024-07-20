@@ -40,6 +40,32 @@
   color: gray;
   border: none;
 }
+.app.dark .myDatatable .datagrid {
+  color: gray;
+  border: none;
+}
+.app.dark .myDatatable .datagrid .MuiDataGrid-topContainer {
+  background-color: #111;
+  color: #333;
+}
+.app.dark .myDatatable .datagrid .MuiDataGrid-cell {
+  color: gray;
+}
+.app.dark .myDatatable .datagrid .MuiDataGrid-columnHeaderTitle {
+  color: gray;
+}
+.app.dark .myDatatable .datagrid .MuiCheckbox-root svg {
+  color: gray;
+}
+.app.dark .myDatatable .datagrid div {
+  color: gray;
+  background-color: transparent;
+}
+.app.dark .myDatatable .datagrid .viewButton {
+  color: gray;
+  border: none;
+}
 .app.dark input {
   background-color: transparent;
+  color: gray;
 }/*# sourceMappingURL=dark.css.map */
