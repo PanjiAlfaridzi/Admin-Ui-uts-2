@@ -34,7 +34,7 @@ const Sidebar = () => {
     <div className="sidebar">
   <div className="top">
     <Link to="/">
-      <span className="logo">AbilStore</span>
+      <span className="logo">MyStore</span>
     </Link>
   </div>
   <hr />
