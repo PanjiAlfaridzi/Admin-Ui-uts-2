@@ -44,7 +44,7 @@
   border: 1px dotted rgba(0, 0, 139, 0.596);
   cursor: pointer;
 }
-.datatable .deleteButton {
+.datatable .cellAction .deleteButton {
   padding: 2px 5px;
   border-radius: 5px;
   color: crimson;

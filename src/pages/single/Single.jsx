@@ -3,11 +3,41 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Chart from "../../components/chart/Chart";
 import Datatable from "../../components/datatable/Datatable";
-import {useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
-const Single = ({columns}) => {
+const Single = ({ columns }) => {
   const location = useLocation();
-  const id = location.pathname.split('/') [2];
+  const id = location.pathname.split('/')[2];
+  const type = location.pathname.split('/')[1];
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const docRef = doc(db, type, id);
+      const docSnap = await getDoc(docRef);
+      const docSnapData = docSnap.data();
+
+      if (docSnap.exists()) {
+        switch (type) {
+          case "users":
+            setData({ ...docSnapData, detailName: docSnapData.displayName });
+            break;
+          case "products":
+            setData({ ...docSnapData, detailName: docSnapData.title });
+            break;
+          default:
+            break;
+        }
+      }
+    };
+    fetchData();
+  }, []);
+
+  const AllKeys = Object.keys(data);
+  const keys = AllKeys.filter(e => e !== 'timeStamp' && e !== 'img' && e !== 'password' && e !== 'displayName' && e !== 'title' && e !== 'detailName')
 
   return (
     <div className="single">
@@ -15,39 +45,27 @@ const Single = ({columns}) => {
       <div className="singleContainer">
         <Navbar />
         <div className="top">
-            <div className="left">
-            <div className="editButton">Edit</div>
+          <div className="left">
+            <div className="editButton">Detail</div>
             <h1 className="title">Information</h1>
             <div className="item">
               <img
-                src="https://media.licdn.com/dms/image/D5603AQFAsrNl_zcjag/profile-displayphoto-shrink_400_400/0/1713614299789?e=1720656000&v=beta&t=IgApHzyvSihU3HVX7aibbPfz_SEWvF0teswawxwmgHs"
+                src={data.img}
                 alt=""
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">Panji Alfaridzi</h1>
-                <div className="detailItem">
-                  <span className="itemKey">ID:</span>
-                  <span className="itemValue">{id}</span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Email:</span>
-                  <span className="itemValue">alfapanji@gmail.com</span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Phone:</span>
-                  <span className="itemValue">+1 2345 67 89</span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Address:</span>
-                  <span className="itemValue">
-                    Elton St. 234 Garden Yd. NewYork
-                  </span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Country:</span>
-                  <span className="itemValue">USA</span>
-                </div>
+                <h1 className="itemTitle">
+                  {data.detailName}
+                </h1>
+
+                {keys.map((key) => (
+                  <div className="detailItem" key={key}>
+                    <span className="itemKey">{key}:</span>
+                    <span className="itemValue">{data[key]}</span>
+                  </div>
+                ))}
+
               </div>
             </div>
           </div>
